@@ -12,7 +12,7 @@ class Ship extends Actor {
 		brakeSpeed = 0.125,
 		obeysBoundarys = true,
 		bulletSpeed = 2.1,
-		image = "#6600ff"
+		image = "https://www.w3schools.com/graphics/pic_the_scream.jpg"
 	) {
 		super(id, pos, size, vel, ang, accel, velCap, turnSpeed, brakeSpeed, obeysBoundarys, "ship", image);
 		this.keys = { left: false, right: false, forward: false, backward: false};
