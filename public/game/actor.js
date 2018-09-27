@@ -56,7 +56,7 @@ class Actor {
 	}
 
 	get force() {
-		let force = new Victor(1, 0).rotate(this.ang);
+		let force = new Victor(0, 1).rotate(this.ang);
 		force.multiply(new Victor(this.vel, this.vel));
 		return force;
 	}
