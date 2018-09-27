@@ -118,7 +118,12 @@ class Actor {
 			//ctx.fillRect(-this.size.x / 2, -this.size.y / 2, this.size.x, this.size.y);
 			ctx.restore();
 		} else {
-			//TODO sprite rendering
+			let centerPos = new Victor(this.pos.x, this.pos.y);
+			ctx.save();
+			ctx.translate(centerPos.x, centerPos.y);ctx.rotate(this.ang);
+			ctx.rotate(this.ang);
+			drawImage(this.image,0,0)
+			ctx.restore();
 		}
 	}
 }
