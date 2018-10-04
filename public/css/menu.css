@@ -26,3 +26,14 @@ form.row div.col-12 {
     margin-top: 20px;
     margin-bottom: 50px;
 }
+.navigation{
+    background-image: url('https://cdn.shopify.com/s/files/1/0228/2629/products/galaxy_by_jayce76-d4mkyq7_grande.png?v=1499810786');
+    background-size: 100%;
+    opacity:1.0;
+    padding: 0;
+    margin-left:10px;
+}
+.navc{
+    opacity:1.0;
+    padding-bottom:10%;
+}
