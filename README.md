@@ -33,8 +33,8 @@ A simple web game, hosted on nodeJS using Sockets.io.
 - [ ] More particle effects
 - [x] Fix up the HTML
 - [x] Fix up the game rendering (its just 500x500, static rn)
-- [ ] <<< play test >>>
-- [ ] Revise the velocity system
+- [x] <<< play test >>>
+- [x] Revise the velocity system
 - [x] Add a menu system
 - [x] Track player names
 - [x] Add support for name selection to the menu system
@@ -43,9 +43,12 @@ A simple web game, hosted on nodeJS using Sockets.io.
 - [x] Start displaying "invisJumps".
 - [x] Start tracking power presses / actually using invisJumps
 - [x] Change how a ship is displayed whilst invis
-- [ ] Make invis players ignore physics / death
-- [ ] Award invisJumps to players when they kill other players
-- [ ] Add a scoreboard to the game
+- [x] Make invis players ignore physics / death
+- [x] Award invisJumps to players when they kill other players
+- [x] Add a scoreboard to the game
+- [ ] Add a display to the scoreboard
+- [ ] Revise the menu system
+- [ ] Cap name lengths
 - [ ] <<< Consider other options for this README, and consider the lasers, and if we want that to be a thing >>>
 
 

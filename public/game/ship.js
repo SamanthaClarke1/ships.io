@@ -9,18 +9,19 @@ class Ship extends Actor {
 		vel = 0.5,
 		ang = 0,
 		accel = 1.4,
-		velCap = 7,
+		velCap = 700,
 		turnSpeed = 0.12,
 		brakeSpeed = 0.125,
 		attraction = new Victor(0, 0),
 		obeysBoundarys = true,
-		bulletSpeed = 8,
-		shotRate = 30,
+		bulletSpeed = 8.5,
+		shotRate = opts.SHOTRATE,
 		image = "#110011",
 		weight = 0.75,
 		isDead = false,
 		deathTimer = opts.RESPAWN_TIME,
-		invisJumps = 1
+		invisJumps = 1,
+		score = 0
 	) {
 		super(id, pos, mode, size, vel, ang, accel, velCap, turnSpeed, brakeSpeed, 
 			attraction, obeysBoundarys, "ship", image, weight);
@@ -38,13 +39,22 @@ class Ship extends Actor {
 		this.invisJumps = invisJumps;
 		this.invisCD = 0;
 		this.invisTimer = 0;
+
+		this.score = score;
 	}
 
-	kill() {
+	get isInvis() {
+		return this.invisTimer > 0;
+	}
+
+	kill(sea) {
 		if(!this.isDead) {
 			this.isDead = true;
 			this.respawnTimer = this.deathTimer;
-			console.log(this.id, "DIED");
+			console.log(this.id, "("+this.name+")", "DIED");
+
+			this.score -= 7;
+			sea.updateScoreboard();
 		} else {
 			
 		}
@@ -65,7 +75,7 @@ class Ship extends Actor {
 	}
 
 	invis(sea) {
-		if(this.timeToInvis <= 0) {
+		if(this.invisCD <= 0) {
 			if(this.invisJumps > 0) {
 				this.invisTimer = opts.INVIS_DURATION;
 				this.invisCD = opts.INVIS_DURATION + 5;
@@ -112,6 +122,7 @@ class Ship extends Actor {
 		state.invisJumps = this.invisJumps;
 		state.invisCD = this.invisCD;
 		state.invisTimer = this.invisTimer;
+		state.score = this.score;
 
 		return state;
 	}
@@ -126,6 +137,7 @@ class Ship extends Actor {
 		this.invisJumps = state.invisJumps;
 		this.invisCD = state.invisCD;
 		this.invisTimer = state.invisTimer;
+		this.score = state.score;
 	}
 
 	setKey(e, tf = true) {
@@ -156,6 +168,7 @@ class Ship extends Actor {
 			if (this.keys.backward) super.brake();
 
 			if (this.keys.shoot) this.shoot(sea, "bh");
+			if (this.keys.power) this.invis(sea);
 		} else {
 			this.respawnTimer -= 1;
 			if(this.respawnTimer <= 0) {
@@ -165,7 +178,13 @@ class Ship extends Actor {
 	}
 
 	post_update(sea) {
+		if(this.invisTimer == opts.INVIS_DURATION && opts.INVIS_JUMP_MODE == "attraction") this.tAcctBuf = this.attraction;
+		if(this.invisTimer == opts.INVIS_DURATION && opts.INVIS_JUMP_MODE == "velocity") this.vel += this.attraction.length();
 		super.post_update(sea);
+		if(this.isInvis && opts.INVIS_JUMP_MODE == "attraction") {
+			this.tAcctBuf = this.tAcctBuf.multiply(new Victor(1-this.friction, 1-this.friction))
+			this.attractionBuffer = this.tAcctBuf;
+		}
 
 		if(this.shotCD > 0) {
 			this.shotCD -= opts.TIMESTEP;

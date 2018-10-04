@@ -98,7 +98,6 @@ class Actor extends SimpleActor {
 	}
 	
 	update(sea) {
-
 		this.ang = correctAng(this.ang);
 		if (this.vel > 0.1) {
 			this.vel = Math.min(this.vel, this.velCap);
@@ -146,18 +145,18 @@ class Actor extends SimpleActor {
 			this.ang = correctAng(this.ang);
 
 			if(this.pos.x > botRight.x) turnDir += this.makeTurn( Math.PI * .5);
-			if(this.pos.y > botRight.y) turnDir += this.makeTurn( Math.PI     );
-			if(this.pos.x <  topLeft.x) turnDir += this.makeTurn(-Math.PI * .5);
-			if(this.pos.y <  topLeft.y) turnDir += this.makeTurn( 0           );
+			else if(this.pos.y > botRight.y) turnDir += this.makeTurn( Math.PI     );
+			else if(this.pos.x <  topLeft.x) turnDir += this.makeTurn(-Math.PI * .5);
+			else if(this.pos.y <  topLeft.y) turnDir += this.makeTurn( 0           );
 
 			if(turnDir != 0) {
 				this.turnResistance = 5;
 				this.ang += this.turnSpeed * turnDir * opts.TIMESTEP;
 
 				let attrToCenter = this.pos.clone().subtract(botRight.clone().multiply(new Victor(0.5, 0.5))).normalize().multiply(new Victor(-1, -1));
-				this.attraction.add(attrToCenter.multiply(new Victor(this.vel/2.2, this.vel/2.2)));
+				this.attractionBuffer.add(attrToCenter.multiply(new Victor(this.vel/1.3, this.vel/1.3)));
 			}
-			this.vel += 0.12*opts.TIMESTEP;//stop people completely stopping outside of boundaries
+			this.vel += 0.08*opts.TIMESTEP;//stop people completely stopping outside of boundaries
 		}
 	}
 
@@ -168,7 +167,7 @@ class Actor extends SimpleActor {
 
 	boost() {
 		// accelerates the ships velocity.
-		this.vel += this.accel / Math.max(this.vel, 1);
+		this.vel += this.accel / Math.max(this.vel * opts.VEL_CAPPER, 1);
 	}
 
 	brake() {

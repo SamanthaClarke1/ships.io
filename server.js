@@ -101,7 +101,7 @@ io.on("connection", function(socket) {
 
 		let tpos = new Victor(0, 0).randomize(new Victor(0, 0), seas[seaid].size);
 		let pship = new gm.Ship(pid, tpos, "server", pname);
-		console.log(pship.id);
+		console.log(pship.id, "("+pname+")", "Joined the game!");
 		seas[seaid].addPlayer(pship);
 
 		let toClient = {

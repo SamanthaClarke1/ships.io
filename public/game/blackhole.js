@@ -6,8 +6,8 @@ class BlackHole extends Actor {
 		vel = 0.5,
 		mode = "client",
 		ang = 0,
-		framelife = 60,
-		size = new Victor(15, 15),
+		framelife = opts.BLACKHOLE_READYUP_TIME,
+		size = new Victor(opts.BLACKHOLE_DEFAULT_SIZE, opts.BLACKHOLE_DEFAULT_SIZE),
 		accel = 1.4,
 		velCap = 8,
 		turnSpeed = 0.25,
@@ -15,7 +15,7 @@ class BlackHole extends Actor {
 		attraction = new Victor(0, 0),
 		obeysBoundarys = true,
 		image = "#332233", 
-		weight = 6
+		weight = 6.5
 	) {
 		super(id, pos, mode, size, vel, ang, accel, velCap, turnSpeed, brakeSpeed, 
 			attraction, obeysBoundarys, "bh", image, weight);
@@ -30,7 +30,7 @@ class BlackHole extends Actor {
 
 	attract(sea) {
 		for(let i in sea.actors) {
-			if(sea.actors[i].id != this.id) {
+			if(!sea.actors[i].isInvis && sea.actors[i].id != this.id) {
 				let tactor = sea.actors[i];
 				let tdist = Math.max(this.pos.distance(tactor.pos) + 1, opts.MIN_ATTRACT_STRENGTH_DIST);
 				if(tdist < opts.MIN_ATTRACT_DIST) {
@@ -60,13 +60,16 @@ class BlackHole extends Actor {
 								sea.removeActorById(this.id);
 							}
 						} else if(sea.actors[i].type == "ship") {
-							if(this.pid != sea.actors[i].pid) { // if the owner of this blackhole isnt the same person whos dying (a person killing themself)
+							if(!sea.actors[i].isInvis && sea.actors[i].respawnTimer <= 0) {
 								let ownerPlayer = sea.getActorById(this.pid);
-								if(ownerPlayer.type == "ship") ownerPlayer.giveInvisJump(1);
-							}
+								if(ownerPlayer && this.pid != sea.actors[i].pid) { // if the owner of this blackhole isnt the same person whos dying (a person killing themself)
+									ownerPlayer.score += 5;
+									if(ownerPlayer.type == "ship") ownerPlayer.giveInvisJump(1);
+								}
 
-							sea.actors[i].kill();
-							sea.actors[i].giveInvisJump(-1);
+								sea.actors[i].kill(sea);
+								sea.actors[i].invisJumps = 1;
+							}
 						}
 					}
 				}

@@ -12,6 +12,19 @@ class Sea {
 			if (this.actors[i].type == "ship") this.players += 1;
 		}
 		this.keyBuffers = {};
+
+		this.topPlayers = [];
+	}
+
+	updateScoreboard() {
+		this.topPlayers = [];
+		for (let i in this.actors) {
+			if(this.actors[i].type == "ship") {
+				this.topPlayers.push({"pid": this.actors[i].id, "score": this.actors[i].score});
+			}
+		}
+		this.topPlayers.sort((a, b) => {return b.score - a.score});
+		console.log("scoreboard updated -- ",this.topPlayers);
 	}
 
 	getActorById(pid, tactors = this.actors) {
