@@ -14,17 +14,26 @@ class Sea {
 		this.keyBuffers = {};
 
 		this.topPlayers = [];
+
+		this.hooks = {
+			"scoreboard": []
+		};
 	}
 
 	updateScoreboard() {
 		this.topPlayers = [];
 		for (let i in this.actors) {
 			if(this.actors[i].type == "ship") {
-				this.topPlayers.push({"pid": this.actors[i].id, "score": this.actors[i].score});
+				this.topPlayers.push({"pid": this.actors[i].id, "score": this.actors[i].score, "name": this.actors[i].pname});
 			}
 		}
 		this.topPlayers.sort((a, b) => {return b.score - a.score});
-		console.log("scoreboard updated -- ",this.topPlayers);
+
+		for(let hook of this.hooks.scoreboard) {
+			hook(this.topPlayers);
+		}
+
+		return this.topPlayers;
 	}
 
 	getActorById(pid, tactors = this.actors) {
@@ -43,22 +52,21 @@ class Sea {
 		this.size = Victor.fromObject(state.size);
 		this.players = state.players;
 
+		let playersChanged = false;
+
 		for (let i in state.actors) {
 			let tstate = state.actors[i];
 			let actor = this.getActorById(state.actors[i].id);
 			if (actor) {
 				actor.importState(state.actors[i]);
 			} else {
-				console.log(
-					"(in sea.importState) couldn't find actor with id of",
-					tstate.id,
-					"choosing to create one"
-				);
 				if (tstate.type == "ship") {
 					let s = new Ship(tstate.id);
 					s.mode = "client";
 					s.importState(tstate);
 					this.addPlayer(s);
+
+					playersChanged = true;
 				} else if (tstate.type == "bh") {
 					let bh = new BlackHole(tstate.id);
 					bh.mode = "client";
@@ -71,11 +79,13 @@ class Sea {
 		for (let i in this.actors) {
 			let actor = this.getActorById(this.actors[i].id, state.actors);
 			if (actor == false) {
-				console.log("removing actor with id of " + this.actors[i].id);
+				if(this.actors[i].type == "ship") playersChanged = true;
 				// the actor doesn't exist in the new state, it should be removed.
 				this.removeActorByIndex(i);
 			}
 		}
+
+		if(playersChanged) this.updateScoreboard();
 	}
 
 	exportState() {

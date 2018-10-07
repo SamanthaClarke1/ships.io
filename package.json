@@ -1,31 +1,31 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "neutronic",
-  "version": "0.1.1",
-  "description": "A simple online ship game, using sockets.io.",
-  "main": "server.js",
-  "scripts": {
-    "build": "./buildscript.sh",
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.16.2",
-    "socket.io": "^2.0.4",
-    "victor": "^1.1.0",
-    "dotenv": "^6.0.0"
-  },
-  "engines": {
-    "node": "8.x"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/welcome-project"
-  },
-  "license": "GPL",
-  "keywords": [
-    "node",
-    "glitch",
-    "express"
-  ]
+	"//1": "describes your app and its dependencies",
+	"//2": "https://docs.npmjs.com/files/package.json",
+	"//3": "updating this file will download and update your packages",
+	"name": "neutronic",
+	"version": "0.1.1",
+	"description": "A simple online ship game, using sockets.io.",
+	"main": "server.js",
+	"scripts": {
+		"build": "./buildscript.sh",
+		"start": "node server.js"
+	},
+	"dependencies": {
+		"express": "^4.16.2",
+		"socket.io": "^2.0.4",
+		"victor": "^1.1.0",
+		"dotenv": "^6.0.0"
+	},
+	"engines": {
+		"node": "8.x"
+	},
+	"repository": {
+		"url": "https://glitch.com/edit/#!/welcome-project"
+	},
+	"license": "GPL",
+	"keywords": [
+		"node",
+		"glitch",
+		"express"
+	]
 }

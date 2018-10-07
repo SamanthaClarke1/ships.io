@@ -109,6 +109,8 @@ io.on("connection", function(socket) {
 			seaid: seaid
 		};
 
+		seas[seaid].updateScoreboard();
+
 		socket.emit("new game", toClient);
 	});
 });

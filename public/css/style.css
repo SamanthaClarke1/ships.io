@@ -1,32 +1,48 @@
 body {
-    width:  100vw;
-    height: 100vh;
-    background: url("/NEUTRONIC.png");
-    background-size: 100%;
-    text-align: center;
-    z-index: 0;
+	width:  100vw;
+	height: 100vh;
+	background: url("/NEUTRONIC.png");
+	background-size: 100%;
+	text-align: center;
+	z-index: 0;
 }
 #data-overlay {
-    position: absolute;
-    text-align: right;
-    z-index: 2;
-    color: white;
+	position: absolute;
+	text-align: right;
+	z-index: 2;
+	color: white;
 }
 * {
-    margin: 0px;
-    padding: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 #main-canv {
-    border: 3px solid #222233;
-    margin: auto;
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+	border: 3px solid #222233;
+	margin: auto;
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
-.navc{
-
-    padding-bottom:20px !important;
+.sb {
+	background: #a9a9a989;
+	width: 20vw;
+	border-radius: 4px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.sb-ship {
+	border-bottom: 1px solid black;
+	text-align: right;
+}
+.sb-ship-name {
+	margin-left: 10px;
+	float: left;
+}
+.sb-ship.score {
+	margin-right: 10px;
+	float: right;
 }

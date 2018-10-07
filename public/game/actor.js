@@ -151,12 +151,12 @@ class Actor extends SimpleActor {
 
 			if(turnDir != 0) {
 				this.turnResistance = 5;
-				this.ang += this.turnSpeed * turnDir * opts.TIMESTEP;
+				this.ang += this.turnSpeed * turnDir * opts.BORDER_TURN_RATE * opts.TIMESTEP;
 
-				let attrToCenter = this.pos.clone().subtract(botRight.clone().multiply(new Victor(0.5, 0.5))).normalize().multiply(new Victor(-1, -1));
-				this.attractionBuffer.add(attrToCenter.multiply(new Victor(this.vel/1.3, this.vel/1.3)));
+				//let attrToCenter = this.pos.clone().subtract(botRight.clone().multiply(new Victor(0.5, 0.5))).normalize().multiply(new Victor(-1, -1));
+				//this.attractionBuffer.add(attrToCenter.multiply(new Victor(this.vel/1.3, this.vel/1.3)));
 			}
-			this.vel += 0.08*opts.TIMESTEP;//stop people completely stopping outside of boundaries
+			this.vel += 0.05*opts.TIMESTEP;//stop people completely stopping outside of boundaries
 		}
 	}
 

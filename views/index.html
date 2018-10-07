@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <title>Neutronic</title>
-  
-    <!-- css libs-->
-    <!-- js libs-->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/victor/1.1.0/victor.min.js"></script>
-    <!-- local css-->
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- local js -->
-    <script src="../game/opts.js"></script>
-    <script src="../game/helperfuncs.js"></script>
-    <script src="../game/actor.js"></script>
-    <script src="../game/blackhole.js"></script>
-    <script src="../game/ship.js"></script>
-    <script src="../game/sea.js"></script>
-    <script src="../client.js"></script>
-  </head>
-  <body>
-    <canvas id="main-canv"></canvas>
-    <div id="data-overlay">
-      <div id="data-holder">
-        Ping: <span id="game-ping">?</span>  FPS: <span id="game-fps">?</span>
-      </div>
-      <div id="ship-holder">
-        Ship: Pos: &lt;<span id="ship-posx">?</span>, <span id="ship-posy">?</span>&gt; 
-        Ang: <span id="ship-ang">?</span>
-        Vel: <span id="ship-vel">?</span>
-      </div>
-    </div>
-  </body>
+	<head>
+		<title>Neutronic</title>
+	
+		<!-- css libs-->
+
+		<!-- js libs-->
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+						integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+						crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/victor/1.1.0/victor.min.js"></script>
+
+		<!-- local css-->
+		<link rel="stylesheet" href="../css/style.css">
+		
+		<!-- local js -->
+		<script src="../game/opts.js"></script>
+		<script src="../game/helperfuncs.js"></script>
+		<script src="../game/actor.js"></script>
+		<script src="../game/blackhole.js"></script>
+		<script src="../game/ship.js"></script>
+		<script src="../game/sea.js"></script>
+		<script src="../client.js"></script>
+	</head>
+	<body>
+		<canvas id="main-canv"></canvas>
+		<div id="scoreboard-holder" class="sb">
+
+		</div>
+		<div id="data-overlay">
+			<div id="data-holder">
+				Ping: <span id="game-ping">?</span>	FPS: <span id="game-fps">?</span>
+			</div>
+			<div id="ship-holder">
+				Ship: Pos: &lt;<span id="ship-posx">?</span>, <span id="ship-posy">?</span>&gt; 
+				Ang: <span id="ship-ang">?</span>
+				Vel: <span id="ship-vel">?</span>
+			</div>
+		</div>
+	</body>
 </html>

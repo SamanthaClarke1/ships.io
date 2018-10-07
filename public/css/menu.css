@@ -1,39 +1,43 @@
 body {
-    width:  100vw;
-    height: 100vh;
-    background: url("/NEUTRONIC.png");
-    background-size: 100%;
-    text-align: center;
+	width:  100vw;
+	height: 100vh;
+	background: url("/NEUTRONIC.png");
+	background-size: 100%;
+	text-align: center;
 }
 * {
-    margin: 0px;
-    padding: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 .menu-holder {
-    background: #4238389a;
-    margin: auto;
-    display: block;
-    border-radius: 7px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+	background: #4238389a;
+	margin: auto;
+	display: block;
+	border-radius: 7px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }
 form.row div.col-6 {
-    margin-top: 50px;
-    margin-bottom: 20px;
+	margin-top: 50px;
+	margin-bottom: 20px;
 }
 form.row div.col-12 {
-    margin-top: 20px;
-    margin-bottom: 50px;
+	margin-top: 20px;
+	margin-bottom: 50px;
 }
 .navigation{
-    background-image: url('https://cdn.shopify.com/s/files/1/0228/2629/products/galaxy_by_jayce76-d4mkyq7_grande.png?v=1499810786');
-    background-size: 100%;
-    opacity:1.0;
-    padding: 0;
-    margin-left:10px;
+	background-image: url('https://cdn.shopify.com/s/files/1/0228/2629/products/galaxy_by_jayce76-d4mkyq7_grande.png?v=1499810786');
+	background-size: 100%;
+	opacity: 1.0;
+	padding: 0;
+	margin-left: 10px;
 }
 .navc{
-    opacity:1.0;
-    padding-bottom:10%;
+	opacity: 1.0;
+	padding-bottom: 10%;
+}
+div.col-6 input {
+	margin-bottom: 3%;
+	margin-top: 3%;
 }

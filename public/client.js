@@ -67,6 +67,10 @@ $(function() {
 			roomNum = data.seaid;
 			sea.importState(data.sea);
 
+			sea.hooks.scoreboard.push(drawScoreboard);
+
+			sea.updateScoreboard();
+
 			GAME_IS_READY = true;
 		});
 
@@ -144,4 +148,17 @@ $(function() {
 		$("#game-fps").text(fps);
 	}
 	let updateFPSFunc = setInterval(updateFPS, 1000);
+
+	function drawScoreboard(sb) {
+		let htmlToInsert = '';
+
+		for(let i = 0; i < opts.PEOPLE_IN_SCOREBOARD && i < sb.length; i++) {
+			htmlToInsert +=`<div class="sb-ship sb-ship-`+sb[i].id+`">
+								<span class="sb-ship-name">`+sb[i].name+`</span> 
+								<span class="sb-ship-score">`+sb[i].score+`</span> 
+							</div>`;
+		}
+
+		$('#scoreboard-holder').empty().append(htmlToInsert);
+	}
 });
